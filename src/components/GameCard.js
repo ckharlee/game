@@ -4,6 +4,7 @@ import { Card, CardMedia, CardContent } from "@mui/material";
 export default function GameCard({ gameCard }) {
   return (
     <Card
+      key={gameCard.name}
       sx={{
         height: "500px",
         width: "300px",
@@ -12,7 +13,7 @@ export default function GameCard({ gameCard }) {
       <CardMedia component="img" height="194" image={gameCard.frontImage} />
       <CardContent>
         <h3>{gameCard.title}</h3>
-        <body>{gameCard.description}</body>
+        <p>{gameCard.description}</p>
       </CardContent>
     </Card>
   );

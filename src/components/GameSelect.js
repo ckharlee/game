@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import hangmanCard from "../assets/cards/Hangman.jpg";
 import ticTacToeCard from "../assets/cards/Tic-Tac-Toe.jpg";
 import triviaCard from "../assets/cards/Trivia.jpg";
-import { Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import GameCard from "./GameCard";
+import Hangman from "./Hangman";
 
 const gameCardInfo = [
   {
@@ -29,6 +30,8 @@ const gameCardInfo = [
 ];
 
 export default function GameSelect() {
+  const [selectedGameCard, setSelectedGameCard] = useState(null);
+
   return (
     <div className="gameselect-container">
       <Grid container direction="column" spacing={2}>
@@ -39,8 +42,18 @@ export default function GameSelect() {
 
         <Grid item container spacing={2}>
           {gameCardInfo.map((gameCard) => {
-            return <GameCard gameCard={gameCard}></GameCard>;
+            return (
+              <div>
+                <GameCard gameCard={gameCard}></GameCard>
+                <Button onClick={() => setSelectedGameCard(gameCard)}>
+                  Select Game
+                </Button>
+              </div>
+            );
           })}
+        </Grid>
+        <Grid item>
+          {selectedGameCard?.title === "Hangman" ? <Hangman></Hangman> : null}
         </Grid>
       </Grid>
     </div>
